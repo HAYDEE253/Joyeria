@@ -282,4 +282,14 @@ body {
   
   /* Estilo para mostrar el formulario de login */
   #loginForm { display: block; text-align: center; }  
+    /* Estilo del botón de cerrar sesión */
   
+  #logoutBtn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #9253ea;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  }

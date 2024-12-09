@@ -138,6 +138,9 @@ async function checkLogin() {
     addJoyaBtn.style.display = 'none'; // Ocultar el botón para agregar joyas si no está logueado
   }
 }
-
+document.getElementById('logoutBtn').addEventListener('click', function() {
+  document.getElementById('loginSection').style.display = 'block';
+  document.getElementById('catalogSection').style.display = 'none';
+});
 // Iniciar la comprobación de sesión y cargar joyas si está logueado
 checkLogin();
