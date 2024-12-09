@@ -3,7 +3,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+
 const path = require('path');
 const multer = require('multer');
 const session = require('express-session'); // Para gestionar la sesión
