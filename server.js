@@ -3,11 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const bcrypt = require('bcryptjs');
-
+const bcrypt = require('bcrypt');
 const path = require('path');
 const multer = require('multer');
 const session = require('express-session'); // Para gestionar la sesión
+const MongoStore = require('connect-mongo'); // Usar MongoDB para almacenar las sesiones
 
 const app = express();
 const port = process.env.PORT || 3000; // Usar el puerto desde .env o 3000 por defecto
@@ -27,17 +27,20 @@ const upload = multer({ storage: storage });
 // Configuración de middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public'))); // Servir archivos estáticos
+app.use(express.static('public'));
 
-// Configuración de la sesión
+// Configuración de la sesión usando MongoStore
 app.use(session({
-  secret: 'hay',
+  secret: 'hay', 
   resave: false,
   saveUninitialized: true,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGO_URI, // URI de MongoDB desde el archivo .env
+  }),
 }));
 
-// Conexión a MongoDB (ahora usando el URI desde .env)
-mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+// Conexión a MongoDB (sin opciones obsoletas)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Conectado a MongoDB'))
   .catch((err) => console.log('Error al conectar con MongoDB:', err));
 
