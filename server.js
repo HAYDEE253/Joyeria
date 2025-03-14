@@ -145,7 +145,7 @@ app.listen(port, () => {
 (async () => {
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash('123', saltRounds);
-  const newUser = new User({ username: 'usuario2', password: hashedPassword });
+  const newUser = new User({ username: 'usuario2', password: 123 });
   await newUser.save();
   console.log('Usuario creado con éxito.');
 })();
